@@ -50,7 +50,7 @@ function aci(deg) {
     } else if (k < 0){
       monitor.value ="0";
     }else{
-      monitor.value = ++k;
+      monitor.value = k;
     } 
     k ++;
   }
@@ -69,3 +69,13 @@ function renkSifirla() {
 }
 
 // setTimeout(aci(),4000)
+
+
+var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+  }
+  document.getElementById("progressBar").value = 10 - timeleft;
+  timeleft -= 1;
+}, 100);
