@@ -60,9 +60,10 @@ function renkSifirla() {
     item.classList.remove("renk5");
   });
 }
-monitor.value = 0;
+monitor.value = "0 °";
 let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymayacağı için bir önceki bulunduğu dereceden geriye saydırdık
    function count(deg) {
+    isNaN(deg) ? deg=0 : deg  // girilen sayı değilde dereceyi sıfıra eşitle
   let step = Math.round(1500 / deg); // not-1
   if (deg > 180) {
     monitor.value = "max";
