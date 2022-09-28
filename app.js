@@ -5,7 +5,9 @@ function inputReset() {
   document.getElementById("deg").value = "";
   document.getElementById("deg").focus();
 }
-
+function enableInput() {
+  document.getElementById("deg").removeAttribute("disabled");
+}
 
 line.forEach((item, i) => {
   item.style.transform = `rotate(${i * 10}deg)`;
@@ -63,14 +65,17 @@ function renkSifirla() {
 monitor.value = "0 °";
 let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymayacağı için bir önceki bulunduğu dereceden geriye saydırdık
    function count(deg) {
-    isNaN(deg) ? deg=0 : deg  // girilen sayı değilde dereceyi sıfıra eşitle
+    if(isNaN(deg)){deg=0 ;  inputReset()} // girilen sayı değilde dereceyi sıfıra eşitle
   let step = Math.round(1500 / deg); // not-1
   if (deg > 180) {
-    monitor.value = "max";
     inputReset()
+  enableInput()
+    monitor.value = "max";
   } else if (deg < 0) {
     monitor.value = "0 °";
     inputReset()
+  enableInput()
+      
   } else if (deg == 0) {
     step = Math.round(1500 / proviusDeg);
     timeleft = proviusDeg;
@@ -78,7 +83,7 @@ let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymaya
       console.log(step, timeleft);
       if (timeleft == 0) {
         clearInterval(downloadTimerN);
-        document.getElementById("deg").removeAttribute("disabled");
+      enableInput()
       }
       monitor.value = timeleft + " °";
       timeleft--;
@@ -88,7 +93,7 @@ let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymaya
     let downloadTimer = setInterval(function () {
       if (timeleft == deg) {
         clearInterval(downloadTimer);
-        document.getElementById("deg").removeAttribute("disabled");
+      enableInput()
         inputReset();
       }
       monitor.value = timeleft + " °";
