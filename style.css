@@ -1,5 +1,15 @@
 :root {
-    --body :rgb(47 41 32);
+    --body :rgb(55 64 129);
+    --renk1:white;
+    --renk2:rgb(250, 178, 178);
+    --renk3:rgb(253, 102, 102);
+    --renk4:rgb(252, 56, 56);
+    --renk5:rgb(176, 6, 6);
+
+}
+@font-face {
+    font-family: calculator;
+    src: url(./Calculator.ttf);
 }
 .container{
     margin: auto;
@@ -9,6 +19,9 @@
     justify-content: center;
     align-items: center;
     background-color:var(--body);
+    width: 400px;
+    height: 505px;
+
 }
 .protractor{
     width: 300px;
@@ -81,23 +94,23 @@
    transform: rotate(12deg);
 } */
 .renk1 {
-    background-color: rgb(6, 11, 161) !important;
+    background-color: var(--renk1) !important;
     transition: all 3.7s;
 }
 .renk2 {
-    background-color: rgb(133, 137, 243) !important;
+    background-color: var(--renk2) !important;
     transition: all 3.7s;
 }
 .renk3 {
-    background-color: rgb(243, 76, 76) !important;
+    background-color: var(--renk3) !important;
     transition: all 3.7s;
 }
 .renk4 {
-    background-color: rgb(179, 6, 6) !important;
+    background-color: var(--renk4) !important;
     transition: all 3.7s;
 }
 .renk5 {
-    background-color: rgb(244, 80, 80) !important;
+    background-color: var(--renk5) !important;
     transition: all 3.7s;
 }
 
@@ -113,11 +126,30 @@
     right: 50%;
 }
 
-.giris input{
+.giris input#deg {
     font-size: 20px;
-    padding: 5px 10px;position: absolute;
+    padding: 5px 10px;
+    position: absolute;
  z-index: 102;
  top: 60%;
  left: 6%;
- font-family: consolas;
+ font-family:consolas;
+ font-weight: 900;
+}
+.giris-monitor input#monitor {
+    width: 100px;
+    font-size: 50px;
+    padding: 1px 10px;
+    position: absolute;
+ z-index: 102;
+ transform-origin: center center;
+ top: 25%;
+ left: 30%;
+
+ background-color: transparent;
+ outline: none;
+ font-family:"calculator", consolas;
+ font-weight: 900;color: yellow;
+ user-select: none;
+text-align: center;
 }
