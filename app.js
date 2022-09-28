@@ -9,7 +9,6 @@ line.forEach((item, i) => {
 document.getElementById("deg").addEventListener("keypress", (e) => {
   if (e.key == "Enter") {
     aci(e.target.value);
-    console.log(e.target.value);
   }
 });
 
@@ -24,7 +23,6 @@ function aci(deg) {
   dene.style.transform = `rotate(${deg}deg)`;
   line.forEach((item, i) => {
     if (i * 10 <= deg) {
-      console.log(item);
       if (i * 10 < 30) {
         item.classList.add("renk1");
       }
@@ -43,17 +41,7 @@ function aci(deg) {
     }
     // item.classList.add("renk1");
   });
-  let k = -5000;
-  while (k <= deg) {
-    if (k > 180) {
-      monitor.value = "max";
-    } else if (k < 0){
-      monitor.value ="0";
-    }else{
-      monitor.value = k;
-    } 
-    k ++;
-  }
+  count(deg)
   document.getElementById("deg").value = "";
   document.getElementById("deg").focus();
 }
@@ -69,13 +57,35 @@ function renkSifirla() {
 }
 
 // setTimeout(aci(),4000)
-
-
-var timeleft = 10;
-var downloadTimer = setInterval(function(){
-  if(timeleft <= 0){
-    clearInterval(downloadTimer);
+let proviusStep =0;
+function count(deg){
+ console.log(proviusStep-deg,"fark");
+  let step=0;
+  if((proviusStep-deg) > 100){
+    step = 100 // not-1   aşağıda 
+  }else{
+    deg < 100 ? step = 10 : step = 6  // not-2
   }
-  document.getElementById("progressBar").value = 10 - timeleft;
-  timeleft -= 1;
-}, 100);
+ 
+  if (deg > 180) {
+    monitor.value = "max";
+  } else if (deg < 0){
+    monitor.value ="0 °";
+  }else{
+   
+  let downloadTimer = setInterval(function(){
+    if(timeleft == deg){
+      clearInterval(downloadTimer);
+     
+    }
+    monitor.value  =  timeleft+" °";
+    timeleft ++ ;
+  }, step);
+   timeleft = 0;
+   proviusStep=deg; // bir önceki derece çok yüksekse düşük dereceye dönerken çok vakit alıyor bunu kontrol içn önceki adımdaki dereceyi aldık
+} 
+}
+
+ // not-1 : sayım js ile ibrenin geri ileri hareketi css transition ile -- şimdiki ve önceki derecelerin fark 100 den büyükse ibre yüz küsür kadar geriye giderken sayım sıfırdan başlayıp küçük bir mikTARDA SAYIM YAPACAK DEMEKETİR BU YÜZEN  sıfırdan sayım ile ibrenin geriye gidişini eşitlemek için sayım adımını geciktiriyoruz 
+
+ // not-2 sayılacak değer 100den küçükse daha hızlı sayılacağı için ibreyle eşitlemek için sayım adımını büyüttük
