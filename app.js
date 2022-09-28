@@ -1,7 +1,7 @@
 let line = document.querySelectorAll(".line");
 let dene = document.querySelector(".dene");
 let monitor = document.querySelector("#monitor");
-
+monitor.value = 0;
 line.forEach((item, i) => {
   item.style.transform = `rotate(${i * 10}deg)`;
 });
@@ -59,7 +59,6 @@ function renkSifirla() {
 // setTimeout(aci(),4000)
 let proviusStep =0;
 function count(deg){
- console.log(proviusStep-deg,"fark");
   let step=0;
   if((proviusStep-deg) > 100){
     step = 100 // not-1   aşağıda 
