@@ -15,6 +15,8 @@ document.getElementById("deg").addEventListener("keypress", (e) => {
 function aci(deg) {
   if(deg > 180){
     deg= 185;
+  }else if(deg < 0){
+    deg= -5;
   }
   renkSifirla();
   dene.style.transform = `rotate(0deg)`;
