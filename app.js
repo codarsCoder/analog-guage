@@ -67,8 +67,10 @@ let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymaya
   let step = Math.round(1500 / deg); // not-1
   if (deg > 180) {
     monitor.value = "max";
+    inputReset()
   } else if (deg < 0) {
     monitor.value = "0 °";
+    inputReset()
   } else if (deg == 0) {
     step = Math.round(1500 / proviusDeg);
     timeleft = proviusDeg;
