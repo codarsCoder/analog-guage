@@ -61,6 +61,7 @@
     right: 50%;
     transform: translate(50%,-50%);
     color: white;
+    transition: background-color 3s;
     
 }
 .thrd{
