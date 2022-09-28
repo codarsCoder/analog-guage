@@ -1,5 +1,5 @@
 :root {
-    --body :rgb(225, 154, 46);
+    --body :rgb(rgb(47 41 32));
 }
 .container{
     margin: auto;
@@ -60,6 +60,7 @@
     top: 50%;
     right: 50%;
     transform: translate(50%,-50%);
+    color: white;
     
 }
 .thrd{
