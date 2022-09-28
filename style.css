@@ -1,3 +1,15 @@
+:root {
+    --body :rgb(225, 154, 46);
+}
+.container{
+    margin: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:var(--body);
+}
 .protractor{
     width: 300px;
     height: 300px;
@@ -22,7 +34,7 @@
     height: 100%;
     position: absolute;
     /* transform-origin: center; */
-    background-color: white;
+    background-color:var(--body);
     z-index: 100;
     border-radius: 50%;
 }
@@ -32,7 +44,7 @@
     height: 50%;
     position: absolute;
     /* transform-origin: center; */
-    background-color: white;
+    background-color:var(--body);
     top: 55%;
     z-index: 101;
  
@@ -66,9 +78,25 @@
     width: 5px;
    transform: rotate(12deg);
 } */
-.renk {
-    background-color: red !important;
-    transition: all 3s;
+.renk1 {
+    background-color: rgb(3, 7, 105) !important;
+    transition: all 2.7s;
+}
+.renk2 {
+    background-color: rgb(133, 137, 243) !important;
+    transition: all 2.7s;
+}
+.renk3 {
+    background-color: rgb(243, 76, 76) !important;
+    transition: all 2.7s;
+}
+.renk4 {
+    background-color: rgb(179, 6, 6) !important;
+    transition: all 2.7s;
+}
+.renk5 {
+    background-color: rgb(244, 80, 80) !important;
+    transition: all 2.7s;
 }
 
 .dene{
