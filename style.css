@@ -82,23 +82,23 @@
 } */
 .renk1 {
     background-color: rgb(6, 11, 161) !important;
-    transition: all 2.7s;
+    transition: all 4s;
 }
 .renk2 {
     background-color: rgb(133, 137, 243) !important;
-    transition: all 2.7s;
+    transition: all 4s;
 }
 .renk3 {
     background-color: rgb(243, 76, 76) !important;
-    transition: all 2.7s;
+    transition: all 4s;
 }
 .renk4 {
     background-color: rgb(179, 6, 6) !important;
-    transition: all 2.7s;
+    transition: all 4s;
 }
 .renk5 {
     background-color: rgb(244, 80, 80) !important;
-    transition: all 2.7s;
+    transition: all 4s;
 }
 
 .dene{
@@ -107,7 +107,7 @@
     transform-origin: right;
     position: absolute;
     background-color: blue;
-    transition: transform 2s;
+    transition: transform 1.5s;
     z-index: 105;
     top: 50%;
     right: 50%;

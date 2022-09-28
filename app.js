@@ -42,7 +42,8 @@ function aci(deg) {
       }
       // item.classList.add("renk1");
     })
- 
+    document.getElementById("deg").value="";
+    document.getElementById("deg").focus();
 }
 
 function renkSifirla() {
