@@ -1,13 +1,19 @@
 let line = document.querySelectorAll(".line");
 let dene = document.querySelector(".dene");
 let monitor = document.querySelector("#monitor");
-monitor.value = 0;
+function inputReset() {
+  document.getElementById("deg").value = "";
+  document.getElementById("deg").focus();
+}
+
+
 line.forEach((item, i) => {
   item.style.transform = `rotate(${i * 10}deg)`;
 });
 
 document.getElementById("deg").addEventListener("keypress", (e) => {
   if (e.key == "Enter") {
+    document.getElementById("deg").setAttribute("disabled", "");
     aci(e.target.value);
   }
 });
@@ -41,9 +47,8 @@ function aci(deg) {
     }
     // item.classList.add("renk1");
   });
-  count(deg)
-  document.getElementById("deg").value = "";
-  document.getElementById("deg").focus();
+  count(deg);
+  inputReset();
 }
 
 function renkSifirla() {
@@ -55,36 +60,41 @@ function renkSifirla() {
     item.classList.remove("renk5");
   });
 }
-
-// setTimeout(aci(),4000)
-let proviusStep =0;
-function count(deg){
-  let step=0;
-  if((proviusStep-deg) > 100){
-    step = 100 // not-1   aşağıda 
-  }else{
-    deg < 100 ? step = 10 : step = 6  // not-2
-  }
- 
+monitor.value = 0;
+let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymayacağı için bir önceki bulunduğu dereceden geriye saydırdık
+   function count(deg) {
+  let step = Math.round(1500 / deg); // not-1
   if (deg > 180) {
     monitor.value = "max";
-  } else if (deg < 0){
-    monitor.value ="0 °";
-  }else{
-   
-  let downloadTimer = setInterval(function(){
-    if(timeleft == deg){
-      clearInterval(downloadTimer);
-     
-    }
-    monitor.value  =  timeleft+" °";
-    timeleft ++ ;
-  }, step);
-   timeleft = 0;
-   proviusStep=deg; // bir önceki derece çok yüksekse düşük dereceye dönerken çok vakit alıyor bunu kontrol içn önceki adımdaki dereceyi aldık
-} 
+  } else if (deg < 0) {
+    monitor.value = "0 °";
+  } else if (deg == 0) {
+    step = Math.round(1500 / proviusDeg);
+    timeleft = proviusDeg;
+    let downloadTimerN = setInterval(function () {
+      console.log(step, timeleft);
+      if (timeleft == 0) {
+        clearInterval(downloadTimerN);
+        document.getElementById("deg").removeAttribute("disabled");
+      }
+      monitor.value = timeleft + " °";
+      timeleft--;
+      inputReset();
+    }, step);
+  } else {
+    let downloadTimer = setInterval(function () {
+      if (timeleft == deg) {
+        clearInterval(downloadTimer);
+        document.getElementById("deg").removeAttribute("disabled");
+        inputReset();
+      }
+      monitor.value = timeleft + " °";
+      timeleft++;
+    }, step);
+  }
+
+  proviusDeg = deg;
+  timeleft = 0;
 }
 
- // not-1 : sayım js ile ibrenin geri ileri hareketi css transition ile -- şimdiki ve önceki derecelerin fark 100 den büyükse ibre yüz küsür kadar geriye giderken sayım sıfırdan başlayıp küçük bir mikTARDA SAYIM YAPACAK DEMEKETİR BU YÜZEN  sıfırdan sayım ile ibrenin geriye gidişini eşitlemek için sayım adımını geciktiriyoruz 
-
- // not-2 sayılacak değer 100den küçükse daha hızlı sayılacağı için ibreyle eşitlemek için sayım adımını büyüttük
+// not-1 :ibre transition ile 1.5 sn de gerçekleşiyor ne olursa olsun ibre hareketi 1.5 sn sürüyor bu yüzden js ile sayımında onun süresine eşit olması gerekiyor yani kaç derece olursa olsun sayım 1.5 snde biröeli bu yüzden  sayım adımı 1500/deg yapıldı böylece ne olursa olsun js de 1.5 sn desayımı bitirecek
