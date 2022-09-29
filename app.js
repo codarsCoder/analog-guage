@@ -1,5 +1,5 @@
 let line = document.querySelectorAll(".line");
-let dene = document.querySelector(".dene");
+let stick = document.querySelector(".stick");
 let monitor = document.querySelector("#monitor");
 function inputReset() {
   document.getElementById("deg").value = "";
@@ -27,8 +27,8 @@ function aci(deg) {
     deg = -5;
   }
   renkSifirla();
-  dene.style.transform = `rotate(0deg)`;
-  dene.style.transform = `rotate(${deg}deg)`;
+  stick.style.transform = `rotate(0deg)`;
+  stick.style.transform = `rotate(${deg}deg)`;
   line.forEach((item, i) => {
     if (i * 10 <= deg) {
       if (i * 10 < 30) {
@@ -64,18 +64,21 @@ function renkSifirla() {
 }
 monitor.value = "0 °";
 let proviusDeg = 0; // tekrar sıfır yazılırsa counter sıfıra kadar saymayacağı için bir önceki bulunduğu dereceden geriye saydırdık
-   function count(deg) {
-    if(isNaN(deg)){deg=0 ;  inputReset()} // girilen sayı değilde dereceyi sıfıra eşitle
+  function count(deg) {
+    if(isNaN(deg)){deg=0 ;  inputReset()} // girilen sayı değilse dereceyi sıfıra eşitle
   let step = Math.round(1500 / deg); // not-1
   if (deg > 180) {
-    inputReset()
-  enableInput()
     monitor.value = "max";
+   setTimeout(function(){
+    enableInput(); inputReset()
+   },1500) ;
+  
   } else if (deg < 0) {
     monitor.value = "0 °";
-    inputReset()
-  enableInput()
-      
+    setTimeout(function(){
+      enableInput(); inputReset()
+    },1500) 
+  
   } else if (deg == 0) {
     step = Math.round(1500 / proviusDeg);
     timeleft = proviusDeg;
