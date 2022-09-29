@@ -4,7 +4,7 @@ let monitor = document.querySelector("#monitor");
 function inputReset() {
   document.getElementById("deg").value = "";
   document.getElementById("deg").focus();
-}
+} inputReset()
 function enableInput() {
   document.getElementById("deg").removeAttribute("disabled");
 }
