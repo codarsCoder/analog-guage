@@ -119,7 +119,7 @@
     height: 2px;
     transform-origin: right;
     position: absolute;
-    background-color: blue;
+    background-color: #e84c24;
     transition: transform 1.5s;
     z-index: 105;
     top: 50%;
